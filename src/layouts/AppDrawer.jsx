@@ -56,7 +56,7 @@ export default function AppDrawer() {
          }}
          initialRouteName="works"
       >
-         {/* <Drawer.Screen
+         <Drawer.Screen
             name="works"
             options={{
                drawerLabel: "Works",
@@ -72,7 +72,7 @@ export default function AppDrawer() {
             }}
          />
 
-         <Drawer.Screen
+         {/* <Drawer.Screen
             name="artists"
             options={{
                drawerLabel: "Artists",
