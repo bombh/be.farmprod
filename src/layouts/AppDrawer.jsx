@@ -72,7 +72,7 @@ export default function AppDrawer() {
             }}
          />
 
-         {/* <Drawer.Screen
+         <Drawer.Screen
             name="artists"
             options={{
                drawerLabel: "Artists",
@@ -87,7 +87,8 @@ export default function AppDrawer() {
                ),
             }}
          />
-         <Drawer.Screen
+
+         {/* <Drawer.Screen
             name="tours"
             options={{
                drawerLabel: "Tours",
