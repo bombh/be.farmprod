@@ -13,7 +13,7 @@ import ScreenTitle from "@/src/components/app/ScreenTitle"
 import HeaderDrawer from "@/src/layouts/HeaderDrawer"
 import RenderHtml from "@/src/components/app/RenderHtml"
 
-const placeholder = require("@/src/assets/images/placeholder.png")
+const placeholder = require("@/assets/images/placeholder.png")
 
 export default function Screen() {
    const { data, isLoading, error } = useAPI("GET", "pages/slug/about", "")

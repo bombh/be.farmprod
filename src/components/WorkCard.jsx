@@ -2,7 +2,7 @@ import { Image } from "expo-image"
 import { useRouter } from "expo-router"
 import { Pressable, Text, View } from "react-native"
 
-const placeholder = require("@/src/assets/images/placeholder.png")
+const placeholder = require("@/assets/images/placeholder.png")
 
 const suppressParenthesis = (string) => {
    return string.replace("(", "").replace(")", "")

@@ -2,7 +2,7 @@ import { View, Text } from "react-native"
 import React, { memo } from "react"
 import { Image } from "expo-image"
 
-const placeholder = require("@/src/assets/images/placeholder.png")
+const placeholder = require("@/assets/images/placeholder.png")
 
 const ArtistCard = (props) => {
    const { name, profile_image } = props

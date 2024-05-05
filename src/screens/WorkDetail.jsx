@@ -12,7 +12,7 @@ import useAPI from "@/src/hooks/useAPI"
 import HeaderBack from "@/src/layouts/HeaderBack"
 import RenderHtml from "@/src/components/app/RenderHtml"
 
-const placeholder = require("@/src/assets/images/placeholder.png")
+const placeholder = require("@/assets/images/placeholder.png")
 
 const Screen = () => {
    // Get route params

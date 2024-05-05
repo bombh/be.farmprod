@@ -8,7 +8,7 @@ import {
    DrawerItemList,
 } from "@react-navigation/drawer"
 
-const logo = require("@/src/assets/images/logo_drawer.png")
+const logo = require("@/assets/images/logo_drawer.png")
 
 // Drawer content
 const AppDrawerContent = (props) => {

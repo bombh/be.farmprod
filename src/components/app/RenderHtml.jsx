@@ -4,7 +4,7 @@ import { Image } from "expo-image"
 import { MaterialIcons } from "@expo/vector-icons"
 import colors from "tailwindcss/colors"
 
-const placeholder = require("@/src/assets/images/placeholder.png")
+const placeholder = require("@/assets/images/placeholder.png")
 
 // Delete HTML tags
 const deleteHtmlTag = (html, tag) => {

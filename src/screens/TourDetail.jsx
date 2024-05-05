@@ -11,7 +11,7 @@ import { FontAwesome6 } from "@expo/vector-icons"
 import { useCallback, useMemo, useRef, useState } from "react"
 
 const mapStyle = require("@/src/data/mapStyle.json")
-const placeholder = require("@/src/assets/images/placeholder.png")
+const placeholder = require("@/assets/images/placeholder.png")
 
 export default function Screen() {
    // States
@@ -46,13 +46,13 @@ export default function Screen() {
       // Open bottom sheet
       switch (point.group) {
          case "fpolln":
-            point.logo = require("@/src/assets/images/logo_fresh.png")
+            point.logo = require("@/assets/images/logo_fresh.png")
             break
          case "kosmo15":
-            point.logo = require("@/src/assets/images/logo_kosmo.png")
+            point.logo = require("@/assets/images/logo_kosmo.png")
             break
          case "kosmo12":
-            point.logo = require("@/src/assets/images/logo_kosmo.png")
+            point.logo = require("@/assets/images/logo_kosmo.png")
             break
          default:
             point.logo = null
@@ -121,12 +121,12 @@ export default function Screen() {
                         point.group === "fpolln"
                            ? "black"
                            : point.group === "kosmo12"
-                             ? "turquoise"
-                             : point.group === "kosmo15"
-                               ? "tomato"
-                               : point.group === "statue"
-                                 ? "indigo"
-                                 : "yellow"
+                           ? "turquoise"
+                           : point.group === "kosmo15"
+                           ? "tomato"
+                           : point.group === "statue"
+                           ? "indigo"
+                           : "yellow"
                      }
                   ></Marker>
                ))}

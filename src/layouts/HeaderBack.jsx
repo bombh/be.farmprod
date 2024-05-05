@@ -4,7 +4,7 @@ import { useNavigation } from "expo-router"
 import colors from "tailwindcss/colors"
 import { MaterialIcons } from "@expo/vector-icons"
 
-const logo = require("@/src/assets/images/logo_128.png")
+const logo = require("@/assets/images/logo_128.png")
 
 export default function HeaderBack() {
    const navigation = useNavigation()
