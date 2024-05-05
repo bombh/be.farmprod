@@ -22,7 +22,7 @@ export default function Screen() {
          <HeaderDrawer />
 
          <ScrollView className="flex-1 bg-white">
-            <ScreenTitle title="20 years" />
+            <ScreenTitle title="The Book" />
 
             {isLoading ? (
                <ActivityIndicator

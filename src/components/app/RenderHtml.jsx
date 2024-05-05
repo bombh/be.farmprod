@@ -6,24 +6,31 @@ import colors from "tailwindcss/colors"
 
 const placeholder = require("@/assets/images/placeholder.png")
 
+// Get Youtube video ID
+// const regex = /embed\/(.*?)\?/;
+// const str = "<iframe src=\"https://www.youtube.com/embed/yIHzqZrwqmk?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen=\"\" name=\"fitvid0\"></iframe>";
+// const match = regex.exec(str);
+// console.log(match[1]);
+
 // Delete HTML tags
 const deleteHtmlTag = (html, tag) => {
    return html
       .replace(new RegExp(`<${tag}>`, "gmi"), "")
       .replace(new RegExp(`</${tag}>`, "gmi"), "")
 }
-// Delete HTML tags
+// Delete HTML tags with attributes
 const deleteHtmlTagAttributes = (html, tag) => {
    return html
       .replace(new RegExp(`<${tag}.+?>`, "gmi"), "")
       .replace(new RegExp(`</${tag}>`, "gmi"), "")
 }
 
+// Delete HTML tags with content
 const deleteHtmlTagFull = (html, tag) => {
    return html.replace(new RegExp(`<${tag}.+?>.+?</${tag}>`, "gmi"), "")
 }
 
-// Delete HTML attributes
+// Delete HTML attribute
 const deleteHtmlAttribute = (html, attr) => {
    return html.replace(new RegExp(` ${attr}=".+?"`, "gmi"), "")
 }
