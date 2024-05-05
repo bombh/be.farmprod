@@ -88,7 +88,7 @@ export default function AppDrawer() {
             }}
          />
 
-         {/* <Drawer.Screen
+         <Drawer.Screen
             name="tours"
             options={{
                drawerLabel: "Tours",
@@ -102,7 +102,8 @@ export default function AppDrawer() {
                   />
                ),
             }}
-         /> */}
+         />
+
          <Drawer.Screen
             name="20years"
             options={{
