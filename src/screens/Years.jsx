@@ -15,7 +15,7 @@ import RenderHtml from "@/src/components/app/RenderHtml"
 const placeholder = require("@/assets/images/placeholder.png")
 
 export default function Screen() {
-   const { data, isLoading, error } = useAPI("GET", "pages/slug/about", "")
+   //const { data, isLoading, error } = useAPI("GET", "pages/slug/about", "")
 
    return (
       <>
@@ -24,34 +24,22 @@ export default function Screen() {
          <ScrollView className="flex-1 bg-white">
             <ScreenTitle title="The Book" />
 
-            {isLoading ? (
-               <ActivityIndicator
-                  className="pt-16"
-                  size="large"
-                  color="#000000"
-               />
-            ) : (
-               data.pages && (
-                  <>
-                     <Image
-                        source={{
-                           uri: "https://www.farmprod.be/content/images/size/w600/2021/07/bandeFP-1.jpg",
-                        }}
-                        className="w-full h-36"
-                        placeholder={placeholder}
-                        placeholderContentFit="cover"
-                        transition={500}
-                     />
+            <Image
+               source={{
+                  uri: "https://www.farmprod.be/content/images/size/w600/2021/07/bandeFP-1.jpg",
+               }}
+               className="w-full h-36"
+               placeholder={placeholder}
+               placeholderContentFit="cover"
+               transition={500}
+            />
 
-                     <View className="py-5">
-                        <RenderHtml
-                           html={data.pages[0].html}
-                           email="farmprod@gmail.com"
-                        />
-                     </View>
-                  </>
-               )
-            )}
+            <View className="py-5">
+               <Text className="text-center text-lg">The Book</Text>
+               <Text className="text-center text-sm">
+                  The book will be available soon
+               </Text>
+            </View>
          </ScrollView>
       </>
    )

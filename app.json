@@ -18,6 +18,11 @@
          "bundleIdentifier": "be.farmprod.app",
          "config": {
             "googleMapsApiKey": "AIzaSyDJpwF3ajhQwPvu8nb-HAsZKrvWbjEqNrY"
+         },
+         "infoPlist": {
+            // "UISupportedInterfaceOrientations": [
+            //    "UIInterfaceOrientationPortrait"
+            // ]
          }
       },
       "android": {

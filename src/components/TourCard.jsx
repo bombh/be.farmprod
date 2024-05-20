@@ -30,25 +30,15 @@ export default function TourCard({ id, title, img }) {
             placeholderContentFit="cover"
             transition={500}
          />
-         {id ? (
-            <View className="absolute bottom-0 w-full bg-black/70 p-2 h-11">
-               <Text
-                  numberOfLines={1}
-                  className="text-white font-semibold text-lg text-center"
-               >
-                  {title}
-               </Text>
-            </View>
-         ) : (
-            <View className="absolute bottom-0 w-full bg-black/70 p-2 h-11">
-               <Text
-                  numberOfLines={1}
-                  className="text-white font-semibold text-lg text-center"
-               >
-                  {title}
-               </Text>
-            </View>
-         )}
+
+         <View className="absolute bottom-0 w-full bg-black/70 p-2">
+            <Text
+               numberOfLines={1}
+               className="text-white font-semibold text-lg text-center"
+            >
+               {title}
+            </Text>
+         </View>
       </Pressable>
    )
 }
