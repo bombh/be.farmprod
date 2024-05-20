@@ -3,6 +3,7 @@ import React from "react"
 import { Image } from "expo-image"
 import { MaterialIcons } from "@expo/vector-icons"
 import colors from "tailwindcss/colors"
+import YoutubePlayer from "react-native-youtube-iframe"
 
 const placeholder = require("@/assets/images/placeholder.png")
 

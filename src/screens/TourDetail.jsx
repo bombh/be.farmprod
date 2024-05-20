@@ -12,6 +12,8 @@ import { useCallback, useMemo, useRef, useState } from "react"
 
 const mapStyle = require("@/src/data/mapStyle.json")
 const placeholder = require("@/assets/images/placeholder.png")
+const logo_fresh = require("@/assets/images/logo_fresh.png")
+const logo_kosmo = require("@/assets/images/logo_kosmo.png")
 
 export default function Screen() {
    // States
@@ -46,13 +48,13 @@ export default function Screen() {
       // Open bottom sheet
       switch (point.group) {
          case "fpolln":
-            point.logo = require("@/assets/images/logo_fresh.png")
+            point.logo = logo_fresh
             break
          case "kosmo15":
-            point.logo = require("@/assets/images/logo_kosmo.png")
+            point.logo = logo_kosmo
             break
          case "kosmo12":
-            point.logo = require("@/assets/images/logo_kosmo.png")
+            point.logo = logo_kosmo
             break
          default:
             point.logo = null

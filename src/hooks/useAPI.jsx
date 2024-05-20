@@ -4,8 +4,6 @@ import axios from "axios"
 const baseUrl = process.env.EXPO_API_BASE_URL
 const key = process.env.EXPO_PUBLIC_API_KEY
 
-console.log("baseUrl", baseUrl)
-
 const useAPI = (method, endpoint, query) => {
    const [data, setData] = useState([])
    const [isLoading, setIsLoading] = useState(true)
