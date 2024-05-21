@@ -62,6 +62,7 @@ export default function Screen() {
                         <RenderHtml
                            html={data.pages[0].html}
                            email="farmprod@gmail.com"
+                           textAlign="justify"
                         />
                      </View>
                   </>

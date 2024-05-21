@@ -66,11 +66,17 @@ const cleanHtml = (html) => {
    return html
 }
 
-export default function RenderHtml({ html, authors, email }) {
+export default function RenderHtml({ html, authors, email, textAlign }) {
    const htmlArray = cleanHtml(html)
    const artists = authors?.map((author) => author.name).join(" / ")
 
    let content = ""
+
+   if (textAlign === "justify") {
+      textClass = "text-justify"
+   } else {
+      textClass = "text-center"
+   }
 
    return (
       <View className="px-0">
@@ -82,7 +88,7 @@ export default function RenderHtml({ html, authors, email }) {
                   content = item.replace(/<p>/, "").replace(/<\/p>/, "")
                   return (
                      <Text
-                        className="text-base text-center mx-5 px-5 py-2 mb-5"
+                        className={`text-base ${textClass} mx-5 px-5 py-2 mb-5`}
                         key={index}
                      >
                         {content}
