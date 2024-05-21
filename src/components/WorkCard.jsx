@@ -34,7 +34,7 @@ const WorkCard = ({ id, title, excerpt, feature_image, tags }) => {
    }
 
    return (
-      <Pressable className="mb-7 active:opacity-70" onPress={showDetail}>
+      <Pressable className="mb-5 active:opacity-70" onPress={showDetail}>
          <View className="relative">
             <Image
                source={{ uri: img }}

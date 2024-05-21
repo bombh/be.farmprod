@@ -8,7 +8,7 @@ const ArtistCard = (props) => {
    const { name, profile_image } = props
 
    return (
-      <View className="mb-7">
+      <View className="mb-5">
          <View className="flex-row items-center justify-center">
             <View className="w-44 h-44 rounded-full bg-gray-200">
                <Image
@@ -20,7 +20,7 @@ const ArtistCard = (props) => {
                />
             </View>
          </View>
-         <View className="p-1">
+         <View className="p-2">
             <Text
                numberOfLines={1}
                className="text-black font-semibold text-lg text-center"
