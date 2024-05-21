@@ -1,6 +1,5 @@
 import { Image, Pressable, View } from "react-native"
-import { Stack } from "expo-router"
-import { useNavigation } from "expo-router"
+import { useNavigation, Stack } from "expo-router"
 import colors from "tailwindcss/colors"
 import { MaterialIcons } from "@expo/vector-icons"
 
@@ -16,6 +15,7 @@ export default function HeaderBack() {
             headerTransparent: true,
             headerTitle: "",
             headerShadowVisible: false,
+            animation: "slide_from_right",
             headerRight: () => (
                <View className="flex items-center justify-center bg-white w-10 h-10 rounded-full opacity-60">
                   <Image source={logo} className="w-7 h-7 mt-1" />
