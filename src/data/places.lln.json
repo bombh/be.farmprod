@@ -1,4 +1,5 @@
 {
+   "comment": "List of points of interest for the LLN map",
    "param": {
       "mapCenter": {
          "lat": 50.66915149532407,
@@ -6,6 +7,7 @@
       },
       "delta": 0.019
    },
+
    "points": [
       {
          "name": "Blue(BE-MX) Resto(BE) Les Crayons(BE) Johnny Boy(BE) Tones(CH) Delicious Brain(SW)",
@@ -43,7 +45,6 @@
          "group": "fpolln",
          "num": 3
       },
-
       {
          "name": "FARMPROD (Collectif)\nAlexis Corrand(FR) Arno Debal(BE) Fred Lebbel(BE) Johan Baggio(FR) Guillaume Desmarets(BE) Nelson Dos Reis(BE) Piotr Szlatcha(BE)",
          "place": "Anneau central",
@@ -57,6 +58,7 @@
          "group": "fpolln",
          "num": 4
       },
+
       {
          "name": "Alz(FR) Bonga(BR) Keto(BR) Caat(BE) Besok(BE)",
          "place": "Place des Wallons",
@@ -69,7 +71,6 @@
          "group": "kosmo12",
          "num": 1
       },
-
       {
          "name": "Denis Meyers(BE) Corn 79(IT) Zorkmade(IT) ",
          "place": "Ruelle St-Eloi",

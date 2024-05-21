@@ -1,4 +1,5 @@
 {
+   "comment": "List of points of interest for the Ottignies map",
    "param": {
       "mapCenter": {
          "lat": 50.663720072820254,
@@ -40,7 +41,6 @@
          "image": "ott_fp_3.jpg",
          "group": "fpolln"
       },
-
       {
          "name": "FARMPROD(Collectif) Alexis Corrand(FR) Arno Debal(BE) Fred Lebbel(BE) Guillaume Desmarets(BE) Nelson Dos Reis(BE)",
          "place": "Rue des Deux-Ponts (Maison de la Citoyenneté)",
