@@ -20,8 +20,7 @@ export default function Screen() {
    const [place, setPlace] = useState({})
 
    // Get route params
-   const params = useLocalSearchParams()
-   const { id } = params
+   const { id } = useLocalSearchParams()
 
    // Initialize tour's data
    let data
