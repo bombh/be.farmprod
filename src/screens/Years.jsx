@@ -3,6 +3,7 @@ import {
    Text,
    ScrollView,
    Pressable,
+   Linking,
    ActivityIndicator,
    useWindowDimensions,
 } from "react-native"
