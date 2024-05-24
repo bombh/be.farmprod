@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { ActivityIndicator, Linking, Platform, Pressable, Text, View } from "react-native"
 import { Image } from "expo-image"
 import { useLocalSearchParams } from "expo-router"
@@ -9,6 +8,7 @@ import { FontAwesome6 } from "@expo/vector-icons"
 import { useCallback, useMemo, useRef, useState } from "react"
 import useFetch from "@/src/hooks/useFetch"
 import ScreenTitle from "../components/app/ScreenTitle"
+import { SafeAreaView } from "react-native-safe-area-context"
 
 const mapStyle = require("@/src/data/mapStyle.json")
 const placeholder = require("@/assets/images/placeholder.png")
@@ -18,32 +18,15 @@ const logo_kosmo = require("@/assets/images/logo_kosmo.png")
 export default function Screen() {
    // States
    const [place, setPlace] = useState({})
-   //const [data, setData] = useState({})
 
    // Get route params
    const params = useLocalSearchParams()
    const { id } = params
 
+   // Fetch data
    const { data, isLoading, error } = useFetch(`app/data/places.${id}.json`)
 
-   //let data
-
-   // Get data
-   // const req = require.context("../data", false, /\.js$/)
-   // req.keys().forEach((filename) => {
-   //    if (filename.includes(id)) {
-   //       //console.log("filename", filename)
-   //       data = req(filename)
-   //    }
-   // })
-
-   // Initial region
-   const initialRegion = {
-      latitude: data?.params?.mapCenter.lat,
-      longitude: data?.params?.mapCenter.lng,
-      latitudeDelta: data?.params?.delta,
-      longitudeDelta: data?.params?.delta,
-   }
+   //isLoading ? console.log("Loading...") : console.log(data.param)
 
    // Handle map's marker press
    const handleMarkerPress = (point) => {
@@ -103,57 +86,54 @@ export default function Screen() {
          <HeaderBack />
 
          {isLoading ? (
-            <View className="flex-1 px-5 bg-white">
+            <SafeAreaView className="flex-1 px-5 pt-16 bg-white">
                <ScreenTitle title="Tours" />
                <ActivityIndicator
                   className="pt-16"
                   size="large"
                   color="#000000"
                />
-            </View>
+            </SafeAreaView>
          ) : (
+            // TODO: Add animateCamera to map
             <View className="flex-1">
-               {/* TODO: Add animateCamera to map */}
                <MapView
                   className="w-full h-full"
                   provider={PROVIDER_GOOGLE}
                   initialRegion={{
-                     latitude: data.params.mapCenter.lat,
-                     longitude: data.params.mapCenter.lng,
-                     latitudeDelta: data.params.delta,
-                     longitudeDelta: data.params.delta,
+                     latitude: data.param.mapCenter.lat,
+                     longitude: data.param.mapCenter.lng,
+                     latitudeDelta: data.param.delta,
+                     longitudeDelta: data.param.delta,
                   }}
                   customMapStyle={mapStyle}
-                  // showsUserLocation
+                  showsUserLocation
                   // showsMyLocationButton
-               ></MapView>
+               >
+                  {data.points.map((point, index) => (
+                     <Marker
+                        onPress={() => handleMarkerPress(point)}
+                        key={`point${index}`}
+                        coordinate={{
+                           latitude: point.geo.lat,
+                           longitude: point.geo.lng,
+                        }}
+                        pinColor={
+                           point.group === "fpolln"
+                              ? "black"
+                              : point.group === "kosmo12"
+                              ? "turquoise"
+                              : point.group === "kosmo15"
+                              ? "tomato"
+                              : point.group === "statue"
+                              ? "indigo"
+                              : "yellow"
+                        }
+                     ></Marker>
+                  ))}
+               </MapView>
             </View>
          )}
-
-         {/* Map rendering */}
-         {/* TODO: Add animateCamera to map */}
-
-         {/* {data.points.map((point, index) => (
-                  <Marker
-                     onPress={() => handleMarkerPress(point)}
-                     key={`point${index}`}
-                     coordinate={{
-                        latitude: point.geo.lat,
-                        longitude: point.geo.lng,
-                     }}
-                     pinColor={
-                        point.group === "fpolln"
-                           ? "black"
-                           : point.group === "kosmo12"
-                           ? "turquoise"
-                           : point.group === "kosmo15"
-                           ? "tomato"
-                           : point.group === "statue"
-                           ? "indigo"
-                           : "yellow"
-                     }
-                  ></Marker>
-               ))} */}
 
          <BottomSheet
             snapPoints={snapPoints}
