@@ -1,6 +1,6 @@
 import { View, ActivityIndicator } from "react-native"
 import { FlashList } from "@shopify/flash-list"
-
+import { useRouter } from "expo-router"
 import useAPI from "@/src/hooks/useAPI"
 import ScreenTitle from "@/src/components/app/ScreenTitle"
 import ArtistCard from "@/src/components/ArtistCard"
