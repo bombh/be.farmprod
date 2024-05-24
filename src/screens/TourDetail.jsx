@@ -86,7 +86,7 @@ export default function Screen() {
          <HeaderBack />
 
          {isLoading ? (
-            <SafeAreaView className="flex-1 px-5 pt-16 bg-white">
+            <SafeAreaView className="flex-1 px-5 pt-12 bg-white">
                <ScreenTitle title="Tours" />
                <ActivityIndicator
                   className="pt-16"
@@ -98,7 +98,7 @@ export default function Screen() {
             // TODO: Add animateCamera to map
             <View className="flex-1">
                <MapView
-                  className="w-full h-full"
+                  className="flex-1"
                   provider={PROVIDER_GOOGLE}
                   initialRegion={{
                      latitude: data.param.mapCenter.lat,
