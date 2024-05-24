@@ -1,14 +1,14 @@
-import { Linking, Platform, Pressable, Text, View } from "react-native"
+import { ActivityIndicator, Linking, Platform, Pressable, Text, View } from "react-native"
 import { Image } from "expo-image"
 import { useLocalSearchParams } from "expo-router"
 import MapView, { PROVIDER_GOOGLE, Marker, Callout } from "react-native-maps"
 import HeaderBack from "@/src/layouts/HeaderBack"
-import BottomSheet, {
-   BottomSheetView,
-   BottomSheetBackdrop,
-} from "@gorhom/bottom-sheet"
+import BottomSheet, { BottomSheetView, BottomSheetBackdrop } from "@gorhom/bottom-sheet"
 import { FontAwesome6 } from "@expo/vector-icons"
 import { useCallback, useMemo, useRef, useState } from "react"
+import useFetch from "@/src/hooks/useFetch"
+import ScreenTitle from "../components/app/ScreenTitle"
+import { SafeAreaView } from "react-native-safe-area-context"
 
 const mapStyle = require("@/src/data/mapStyle.json")
 const placeholder = require("@/assets/images/placeholder.png")
@@ -20,27 +20,13 @@ export default function Screen() {
    const [place, setPlace] = useState({})
 
    // Get route params
-   const { id } = useLocalSearchParams()
+   const params = useLocalSearchParams()
+   const { id } = params
 
-   // Initialize tour's data
-   let data
+   // Fetch data
+   const { data, isLoading, error } = useFetch(`app/data/places.${id}.json`)
 
-   // Get data
-   const req = require.context("../data", false, /\.js$/)
-   req.keys().forEach((filename) => {
-      if (filename.includes(id)) {
-         //console.log("filename", filename)
-         data = req(filename)
-      }
-   })
-
-   // Initial region
-   const initialRegion = {
-      latitude: data.param.mapCenter.lat,
-      longitude: data.param.mapCenter.lng,
-      latitudeDelta: data.param.delta,
-      longitudeDelta: data.param.delta,
-   }
+   //isLoading ? console.log("Loading...") : console.log(data.param)
 
    // Handle map's marker press
    const handleMarkerPress = (point) => {
@@ -99,40 +85,55 @@ export default function Screen() {
       <>
          <HeaderBack />
 
-         {/* Map rendering */}
-         <View className="flex-1">
-            {/* TODO: Add animateCamera to map */}
-            <MapView
-               className="w-full h-full"
-               provider={PROVIDER_GOOGLE}
-               initialRegion={initialRegion}
-               customMapStyle={mapStyle}
-               // showsUserLocation
-               // showsMyLocationButton
-            >
-               {data.points.map((point, index) => (
-                  <Marker
-                     onPress={() => handleMarkerPress(point)}
-                     key={`point${index}`}
-                     coordinate={{
-                        latitude: point.geo.lat,
-                        longitude: point.geo.lng,
-                     }}
-                     pinColor={
-                        point.group === "fpolln"
-                           ? "black"
-                           : point.group === "kosmo12"
-                           ? "turquoise"
-                           : point.group === "kosmo15"
-                           ? "tomato"
-                           : point.group === "statue"
-                           ? "indigo"
-                           : "yellow"
-                     }
-                  ></Marker>
-               ))}
-            </MapView>
-         </View>
+         {isLoading ? (
+            <SafeAreaView className="flex-1 px-5 pt-16 bg-white">
+               <ScreenTitle title="Tours" />
+               <ActivityIndicator
+                  className="pt-16"
+                  size="large"
+                  color="#000000"
+               />
+            </SafeAreaView>
+         ) : (
+            // TODO: Add animateCamera to map
+            <View className="flex-1">
+               <MapView
+                  className="w-full h-full"
+                  provider={PROVIDER_GOOGLE}
+                  initialRegion={{
+                     latitude: data.param.mapCenter.lat,
+                     longitude: data.param.mapCenter.lng,
+                     latitudeDelta: data.param.delta,
+                     longitudeDelta: data.param.delta,
+                  }}
+                  customMapStyle={mapStyle}
+                  showsUserLocation
+                  // showsMyLocationButton
+               >
+                  {data.points.map((point, index) => (
+                     <Marker
+                        onPress={() => handleMarkerPress(point)}
+                        key={`point${index}`}
+                        coordinate={{
+                           latitude: point.geo.lat,
+                           longitude: point.geo.lng,
+                        }}
+                        pinColor={
+                           point.group === "fpolln"
+                              ? "black"
+                              : point.group === "kosmo12"
+                              ? "turquoise"
+                              : point.group === "kosmo15"
+                              ? "tomato"
+                              : point.group === "statue"
+                              ? "indigo"
+                              : "yellow"
+                        }
+                     ></Marker>
+                  ))}
+               </MapView>
+            </View>
+         )}
 
          <BottomSheet
             snapPoints={snapPoints}
@@ -163,19 +164,11 @@ export default function Screen() {
                         className="w-28 h-28 mx-auto mb-4"
                      />
                   )}
-                  <Text className="text-white text-center text-xl">
-                     {place.name}
-                  </Text>
+                  <Text className="text-white text-center text-xl">{place.name}</Text>
 
-                  <Text className="text-white text-center mt-2 text-md">
-                     {place.place}
-                  </Text>
+                  <Text className="text-white text-center mt-2 text-md">{place.place}</Text>
 
-                  {place.comment && (
-                     <Text className="text-white text-center mt-2 text-xs">
-                        {place.comment}
-                     </Text>
-                  )}
+                  {place.comment && <Text className="text-white text-center mt-2 text-xs">{place.comment}</Text>}
                </View>
 
                {/* Indicator line */}

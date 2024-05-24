@@ -111,7 +111,7 @@ export default function RenderHtml({ html, authors, email, textAlign }) {
                   return (
                      <View className="w-full" key={index}>
                         <Image
-                           className="w-full aspect-square mb-7"
+                           className="w-full aspect-square mb-5"
                            source={{ uri: item.substring(10, item.length - 2) }}
                            placeholder={placeholder}
                            placeholderContentFit="cover"
