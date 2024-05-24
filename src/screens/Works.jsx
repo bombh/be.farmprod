@@ -1,5 +1,4 @@
 import { View, ActivityIndicator } from "react-native"
-import { useState } from "react"
 import { FlashList } from "@shopify/flash-list"
 
 import useAPI from "@/src/hooks/useAPI"
@@ -8,11 +7,7 @@ import WorkCard from "@/src/components/WorkCard"
 import HeaderDrawer from "@/src/layouts/HeaderDrawer"
 
 export default function Screen() {
-   const { data, isLoading, error } = useAPI(
-      "GET",
-      "posts",
-      "limit=100&include=tags"
-   )
+   const { data, isLoading, error } = useAPI("GET", "posts", "limit=100&include=tags")
 
    return (
       <>

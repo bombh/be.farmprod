@@ -1,6 +1,5 @@
-import { View, Text, Pressable, ScrollView } from "react-native"
+import { ScrollView } from "react-native"
 import { useRouter } from "expo-router"
-import { Image } from "expo-image"
 
 import ScreenTitle from "@/src/components/app/ScreenTitle"
 import TourCard from "@/src/components/TourCard"

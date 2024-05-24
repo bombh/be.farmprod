@@ -1,7 +1,7 @@
 import { ActivityIndicator, Linking, Platform, Pressable, Text, View } from "react-native"
 import { Image } from "expo-image"
 import { useLocalSearchParams } from "expo-router"
-import MapView, { PROVIDER_GOOGLE, Marker, Callout } from "react-native-maps"
+import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps"
 import HeaderBack from "@/src/layouts/HeaderBack"
 import BottomSheet, { BottomSheetView, BottomSheetBackdrop } from "@gorhom/bottom-sheet"
 import { FontAwesome6 } from "@expo/vector-icons"

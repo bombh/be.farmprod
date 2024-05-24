@@ -1,8 +1,5 @@
-import React, { useCallback } from "react"
 import { View, ActivityIndicator } from "react-native"
-import { useNavigation, useRouter } from "expo-router"
 import { FlashList } from "@shopify/flash-list"
-//import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import useAPI from "@/src/hooks/useAPI"
 import ScreenTitle from "@/src/components/app/ScreenTitle"

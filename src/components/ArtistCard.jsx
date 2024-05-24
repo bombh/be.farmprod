@@ -1,5 +1,4 @@
 import { View, Text } from "react-native"
-import React, { memo } from "react"
 import { Image } from "expo-image"
 
 const placeholder = require("@/assets/images/placeholder.png")
@@ -32,4 +31,4 @@ const ArtistCard = (props) => {
    )
 }
 
-export default memo(ArtistCard)
+export default ArtistCard

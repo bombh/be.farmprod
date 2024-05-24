@@ -1,10 +1,4 @@
-import {
-   View,
-   Text,
-   ScrollView,
-   ActivityIndicator,
-   useWindowDimensions,
-} from "react-native"
+import { View, ScrollView, ActivityIndicator, useWindowDimensions } from "react-native"
 // import RenderHtml from "react-native-render-html"
 import { Image } from "expo-image"
 
@@ -17,20 +11,6 @@ const placeholder = require("@/assets/images/placeholder.png")
 
 export default function Screen() {
    const { data, isLoading, error } = useAPI("GET", "pages/slug/about", "")
-   const { width } = useWindowDimensions()
-
-   const mixedStyle = {
-      body: {},
-      h2: {
-         fontSize: "24px",
-         fontWeight: "bold",
-         color: "#000",
-      },
-      p: {
-         fontSize: "18px",
-         lineHeight: "28px",
-      },
-   }
 
    return (
       <>

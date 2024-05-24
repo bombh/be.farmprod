@@ -1,10 +1,8 @@
 import { View, Text, ScrollView, Pressable, Linking, ActivityIndicator, useWindowDimensions } from "react-native"
 import { Image } from "expo-image"
 
-import useAPI from "@/src/hooks/useAPI"
 import ScreenTitle from "@/src/components/app/ScreenTitle"
 import HeaderDrawer from "@/src/layouts/HeaderDrawer"
-import RenderHtml from "@/src/components/app/RenderHtml"
 import colors from "tailwindcss/colors"
 import { MaterialIcons } from "@expo/vector-icons"
 
