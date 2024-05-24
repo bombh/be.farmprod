@@ -27,7 +27,7 @@ const useFetch = (endpoint) => {
          setData(result.data)
          //console.log("useFetch", result.data)
       } catch (error) {
-         console.log(error)
+         //console.log(error)
          setError(error)
          //alert("Error fetching data, please try again later...")
       } finally {

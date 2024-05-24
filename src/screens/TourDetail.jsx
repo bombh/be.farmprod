@@ -118,6 +118,7 @@ export default function Screen() {
                            latitude: point.geo.lat,
                            longitude: point.geo.lng,
                         }}
+                        tracksViewChanges={false}
                         pinColor={
                            point.group === "fpolln"
                               ? "black"

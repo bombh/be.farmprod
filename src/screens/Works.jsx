@@ -6,6 +6,10 @@ import ScreenTitle from "@/src/components/app/ScreenTitle"
 import WorkCard from "@/src/components/WorkCard"
 import HeaderDrawer from "@/src/layouts/HeaderDrawer"
 
+const onEndReached = () => {
+   //console.log("Reached end of list")
+}
+
 export default function Screen() {
    const { data, isLoading, error } = useAPI("GET", "posts", "limit=100&include=tags")
 
@@ -28,6 +32,8 @@ export default function Screen() {
                   renderItem={({ item }) => <WorkCard {...item} />}
                   keyExtractor={(item) => item.id}
                   estimatedItemSize={268}
+                  onEndReached={onEndReached}
+                  onEndReachedThreshold={0.5}
                   ListHeaderComponent={<ScreenTitle title="Works" />}
                   // initialNumToRender={5}
                   // maxToRenderPerBatch={5}
