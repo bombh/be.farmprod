@@ -106,6 +106,7 @@ export default function Screen() {
                      latitudeDelta: data.param.delta,
                      longitudeDelta: data.param.delta,
                   }}
+                  cacheEnabled={true}
                   customMapStyle={mapStyle}
                   showsUserLocation
                   // showsMyLocationButton
@@ -113,7 +114,7 @@ export default function Screen() {
                   {data.points.map((point, index) => (
                      <Marker
                         onPress={() => handleMarkerPress(point)}
-                        key={`point${index}`}
+                        key={index}
                         coordinate={{
                            latitude: point.geo.lat,
                            longitude: point.geo.lng,
