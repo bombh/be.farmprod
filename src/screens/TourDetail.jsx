@@ -75,6 +75,7 @@ export default function Screen() {
          <BottomSheetBackdrop
             appearsOnIndex={0}
             disappearsOnIndex={-1}
+            enableTouchThrough={false}
             {...props}
          />
       ),
