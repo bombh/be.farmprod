@@ -1,54 +1,60 @@
 {
-   "expo": {
-      "name": "Farmprod",
-      "slug": "be-farmprod",
-      "version": "1.0.0",
-      "orientation": "portrait",
-      "icon": "./assets/icon.png",
-      "userInterfaceStyle": "light",
-      "scheme": "farmprod",
-      "splash": {
-         "image": "./assets/splash.png",
-         "resizeMode": "contain",
-         "backgroundColor": "#ffffff"
+  "expo": {
+    "name": "Farmprod",
+    "slug": "be-farmprod",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "scheme": "farmprod",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "be.farmprod.app",
+      "config": {
+        "googleMapsApiKey": "AIzaSyDJpwF3ajhQwPvu8nb-HAsZKrvWbjEqNrY"
       },
-      "assetBundlePatterns": ["**/*"],
-      "ios": {
-         "supportsTablet": true,
-         "bundleIdentifier": "be.farmprod.app",
-         "config": {
-            "googleMapsApiKey": "AIzaSyDJpwF3ajhQwPvu8nb-HAsZKrvWbjEqNrY"
-         },
-         "infoPlist": {
-            // "UISupportedInterfaceOrientations": [
-            //    "UIInterfaceOrientationPortrait"
-            // ]
-         }
+      "infoPlist": {}
+    },
+    "android": {
+      "package": "be.farmprod.app",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCk1WebaZXPmTNh2Qt2eh4jMs3PzWXLuU8"
+        }
       },
-      "android": {
-         "package": "be.farmprod.app",
-         "config": {
-            "googleMaps": {
-               "apiKey": "AIzaSyCk1WebaZXPmTNh2Qt2eh4jMs3PzWXLuU8"
-            }
-         },
-         "adaptiveIcon": {
-            "foregroundImage": "./assets/adaptive-icon.png",
-            "backgroundColor": "#ffffff"
-         }
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "extra": {
+      "router": {
+        "origin": false
       },
-      "web": {
-         "favicon": "./assets/favicon.png"
-      },
-      "plugins": ["expo-router"],
-      "extra": {
-         "router": {
-            "origin": false
-         },
-         "eas": {
-            "projectId": "e727d411-fde7-48fa-a08c-05cb6656aeb8"
-         }
-      },
-      "owner": "bombh"
-   }
+      "eas": {
+        "projectId": "e727d411-fde7-48fa-a08c-05cb6656aeb8"
+      }
+    },
+    "owner": "bombh",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/e727d411-fde7-48fa-a08c-05cb6656aeb8"
+    }
+  }
 }
