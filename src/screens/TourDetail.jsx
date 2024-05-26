@@ -107,7 +107,7 @@ export default function Screen() {
                      latitudeDelta: data.param.delta,
                      longitudeDelta: data.param.delta,
                   }}
-                  cacheEnabled={true}
+                  //cacheEnabled={true}
                   customMapStyle={mapStyle}
                   showsUserLocation
                   // showsMyLocationButton
