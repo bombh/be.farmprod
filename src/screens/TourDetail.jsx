@@ -109,7 +109,7 @@ export default function Screen() {
                   }}
                   //cacheEnabled={true}
                   customMapStyle={mapStyle}
-                  showsUserLocation
+                  //showsUserLocation
                   // showsMyLocationButton
                >
                   {data.points.map((point, index) => (
