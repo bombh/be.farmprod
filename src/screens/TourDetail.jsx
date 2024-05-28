@@ -93,7 +93,7 @@ export default function Screen() {
                <ActivityIndicator
                   className="pt-16"
                   size="large"
-                  color="#000000"
+                  color="#666666"
                />
             </SafeAreaView>
          ) : (
