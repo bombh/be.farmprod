@@ -1,14 +1,16 @@
 import { ActivityIndicator, Linking, Platform, Pressable, Text, View } from "react-native"
 import { Image } from "expo-image"
-import { useLocalSearchParams } from "expo-router"
+import { useLocalSearchParams, useNavigation } from "expo-router"
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps"
 import HeaderBack from "@/src/layouts/HeaderBack"
 import BottomSheet, { BottomSheetView, BottomSheetBackdrop } from "@gorhom/bottom-sheet"
 import { FontAwesome6 } from "@expo/vector-icons"
-import { useCallback, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { SafeAreaView } from "react-native-safe-area-context"
+
 import useFetch from "@/src/hooks/useFetch"
 import ScreenTitle from "../components/app/ScreenTitle"
-import { SafeAreaView } from "react-native-safe-area-context"
+import useTransitionEnd from "../hooks/useTransitionEnd"
 
 const mapStyle = require("@/src/data/mapStyle.json")
 const placeholder = require("@/assets/images/placeholder.png")
@@ -16,17 +18,14 @@ const logo_fresh = require("@/assets/images/logo_fresh.png")
 const logo_kosmo = require("@/assets/images/logo_kosmo.png")
 
 export default function Screen() {
-   // States
+   // Hooks
    const [place, setPlace] = useState({})
+   const navigation = useNavigation()
+   const { isEnd } = useTransitionEnd()
 
-   // Get route params
    const params = useLocalSearchParams()
    const { id } = params
-
-   // Fetch data
    const { data, isLoading, error } = useFetch(`app/data/places.${id}.json`)
-
-   //isLoading ? console.log("Loading...") : console.log(data.param)
 
    // Handle map's marker press
    const handleMarkerPress = (point) => {
@@ -86,7 +85,9 @@ export default function Screen() {
       <>
          <HeaderBack />
 
-         {isLoading ? (
+         {/*console.log("Render", onTransitionEnd, isLoading, error, data)*/}
+
+         {isLoading || !isEnd ? (
             <SafeAreaView className="flex-1 px-5 pt-12 bg-white">
                <ScreenTitle title="Tours" />
                <ActivityIndicator
