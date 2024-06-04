@@ -20,7 +20,7 @@ export default function Screen() {
          <HeaderDrawer />
          <View className="flex-1 px-5 bg-white">
             {isLoading ? (
-               <Loading label="Loading works" />
+               <Loading label="Loading Works" />
             ) : (
                <FlashList
                   data={data.posts}

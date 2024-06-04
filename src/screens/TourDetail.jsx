@@ -91,7 +91,7 @@ export default function Screen() {
 
          <View className="flex-1 bg-white">
             {isLoading || !isTransitionEnd ? (
-               <Loading label="Loading tours" />
+               <Loading label="Loading Tour" />
             ) : (
                // TODO: Add animateCamera to map
                <Animated.View
