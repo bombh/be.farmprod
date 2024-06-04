@@ -49,9 +49,9 @@ const Loading = ({ label, hideLogo }) => {
          <ActivityIndicator
             className=""
             size="large"
-            color={colors.gray[500]}
+            color={colors.neutral[500]}
          />
-         <Text className="mt-2 text-gray-500">{label ? label : "Loading"}</Text>
+         <Text className="mt-2 text-neutral-500">{label ? label : "Loading"}</Text>
       </Animated.View>
    )
 }
