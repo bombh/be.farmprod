@@ -4,6 +4,7 @@ import { useRouter } from "expo-router"
 import ScreenTitle from "@/src/components/app/ScreenTitle"
 import TourCard from "@/src/components/TourCard"
 import HeaderDrawer from "@/src/layouts/HeaderDrawer"
+import { SafeAreaView } from "react-native-safe-area-context"
 
 export default function Screen() {
    const router = useRouter()

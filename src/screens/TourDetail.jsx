@@ -1,14 +1,16 @@
-import { ActivityIndicator, Linking, Platform, Pressable, Text, View } from "react-native"
+import { Linking, Platform, Pressable, Text, View } from "react-native"
 import { Image } from "expo-image"
-import { useLocalSearchParams, useNavigation } from "expo-router"
+import { useLocalSearchParams } from "expo-router"
 import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps"
 import HeaderBack from "@/src/layouts/HeaderBack"
 import BottomSheet, { BottomSheetView, BottomSheetBackdrop } from "@gorhom/bottom-sheet"
 import { FontAwesome6 } from "@expo/vector-icons"
-import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { useCallback, useMemo, useRef, useState } from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
+import Animated, { LinearTransition, FadeIn, FadeOut } from "react-native-reanimated"
 
 import useFetch from "@/src/hooks/useFetch"
+import Loading from "@/src/components/app/Loading"
 import ScreenTitle from "../components/app/ScreenTitle"
 import useTransitionEnd from "../hooks/useTransitionEnd"
 
@@ -20,8 +22,8 @@ const logo_kosmo = require("@/assets/images/logo_kosmo.png")
 export default function Screen() {
    // Hooks
    const [place, setPlace] = useState({})
-   const navigation = useNavigation()
-   const { isEnd } = useTransitionEnd()
+
+   const { isTransitionEnd } = useTransitionEnd()
 
    const params = useLocalSearchParams()
    const { id } = params
@@ -87,57 +89,57 @@ export default function Screen() {
 
          {/*console.log("Render", onTransitionEnd, isLoading, error, data)*/}
 
-         {isLoading || !isEnd ? (
-            <SafeAreaView className="flex-1 px-5 pt-12 bg-white">
-               <ScreenTitle title="Tours" />
-               <ActivityIndicator
-                  className="pt-16"
-                  size="large"
-                  color="#666666"
-               />
-            </SafeAreaView>
-         ) : (
-            // TODO: Add animateCamera to map
-            <View className="flex-1">
-               <MapView
+         <View className="flex-1 bg-white">
+            {isLoading || !isTransitionEnd ? (
+               <Loading label="Loading tours" />
+            ) : (
+               // TODO: Add animateCamera to map
+               <Animated.View
                   className="flex-1"
-                  provider={PROVIDER_GOOGLE}
-                  initialRegion={{
-                     latitude: data.param.mapCenter.lat,
-                     longitude: data.param.mapCenter.lng,
-                     latitudeDelta: data.param.delta,
-                     longitudeDelta: data.param.delta,
-                  }}
-                  //cacheEnabled={true}
-                  customMapStyle={mapStyle}
-                  //showsUserLocation
-                  // showsMyLocationButton
+                  layout={LinearTransition.stiffness()}
+                  entering={FadeIn}
+                  exiting={FadeOut}
                >
-                  {data.points.map((point, index) => (
-                     <Marker
-                        onPress={() => handleMarkerPress(point)}
-                        key={index}
-                        coordinate={{
-                           latitude: point.geo.lat,
-                           longitude: point.geo.lng,
-                        }}
-                        tracksViewChanges={false}
-                        pinColor={
-                           point.group === "fpolln"
-                              ? "black"
-                              : point.group === "kosmo12"
-                              ? "turquoise"
-                              : point.group === "kosmo15"
-                              ? "tomato"
-                              : point.group === "statue"
-                              ? "indigo"
-                              : "yellow"
-                        }
-                     ></Marker>
-                  ))}
-               </MapView>
-            </View>
-         )}
+                  <MapView
+                     className="flex-1"
+                     provider={PROVIDER_GOOGLE}
+                     initialRegion={{
+                        latitude: data.param.mapCenter.lat,
+                        longitude: data.param.mapCenter.lng,
+                        latitudeDelta: data.param.delta,
+                        longitudeDelta: data.param.delta,
+                     }}
+                     //cacheEnabled={true}
+                     customMapStyle={mapStyle}
+                     //showsUserLocation
+                     // showsMyLocationButton
+                  >
+                     {data.points.map((point, index) => (
+                        <Marker
+                           onPress={() => handleMarkerPress(point)}
+                           key={index}
+                           coordinate={{
+                              latitude: point.geo.lat,
+                              longitude: point.geo.lng,
+                           }}
+                           tracksViewChanges={false}
+                           pinColor={
+                              point.group === "fpolln"
+                                 ? "black"
+                                 : point.group === "kosmo12"
+                                 ? "turquoise"
+                                 : point.group === "kosmo15"
+                                 ? "tomato"
+                                 : point.group === "statue"
+                                 ? "indigo"
+                                 : "yellow"
+                           }
+                        ></Marker>
+                     ))}
+                  </MapView>
+               </Animated.View>
+            )}
+         </View>
 
          <BottomSheet
             snapPoints={snapPoints}
