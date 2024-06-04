@@ -1,37 +1,33 @@
-import { Linking, Platform, Pressable, Text, View } from "react-native"
-import { Image } from "expo-image"
+import { View } from "react-native"
 import { useLocalSearchParams } from "expo-router"
-import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps"
-import HeaderBack from "@/src/layouts/HeaderBack"
-import BottomSheet, { BottomSheetView, BottomSheetBackdrop } from "@gorhom/bottom-sheet"
-import { FontAwesome6 } from "@expo/vector-icons"
-import { useCallback, useMemo, useRef, useState } from "react"
-import { SafeAreaView } from "react-native-safe-area-context"
-import Animated, { LinearTransition, FadeIn, FadeOut } from "react-native-reanimated"
+import { useRef, useState } from "react"
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated"
 
+import HeaderBack from "@/src/layouts/HeaderBack"
 import useFetch from "@/src/hooks/useFetch"
 import Loading from "@/src/components/app/Loading"
-import ScreenTitle from "../components/app/ScreenTitle"
-import useTransitionEnd from "../hooks/useTransitionEnd"
+import useTransitionEnd from "@/src/hooks/useTransitionEnd"
+import Map from "@/src/components/map/Map"
+import MapModal from "../components/map/MapModal"
 
-const mapStyle = require("@/src/data/mapStyle.json")
-const placeholder = require("@/assets/images/placeholder.png")
 const logo_fresh = require("@/assets/images/logo_fresh.png")
 const logo_kosmo = require("@/assets/images/logo_kosmo.png")
 
 export default function Screen() {
-   // Hooks
+   // States
    const [place, setPlace] = useState({})
-
    const { isTransitionEnd } = useTransitionEnd()
 
+   // Refs
+   const _bottomSheet = useRef(null)
+
+   // Hooks
    const params = useLocalSearchParams()
    const { id } = params
    const { data, isLoading, error } = useFetch(`app/data/places.${id}.json`)
 
    // Handle map's marker press
    const handleMarkerPress = (point) => {
-      // Open bottom sheet
       switch (point.group) {
          case "fpolln":
             point.logo = logo_fresh
@@ -47,154 +43,36 @@ export default function Screen() {
       }
 
       setPlace(point)
-      bottomSheetRef.current?.snapToIndex(0)
+      _bottomSheet.current?.snapToIndex(0)
    }
-
-   // Open Maps app
-   const openURL = (point) => {
-      const scheme = Platform.select({
-         ios: "maps://0,0?q=",
-         android: "geo:0,0?q=",
-      })
-      const latLng = `${point.geo.lat},${point.geo.lng}`
-      const label = encodeURIComponent(point.place)
-      const url = Platform.select({
-         ios: `${scheme}${label}@${latLng}`,
-         android: `${scheme}${latLng}(${label})`,
-      })
-
-      Linking.openURL(url)
-   }
-
-   // Bottom sheet
-   const bottomSheetRef = useRef(null)
-   const snapPoints = useMemo(() => ["75%"], [])
-
-   // Render backdrop for Bottom Sheet
-   const renderBackdrop = useCallback(
-      (props) => (
-         <BottomSheetBackdrop
-            appearsOnIndex={0}
-            disappearsOnIndex={-1}
-            enableTouchThrough={false}
-            {...props}
-         />
-      ),
-      []
-   )
 
    return (
       <>
          <HeaderBack />
 
-         {/*console.log("Render", onTransitionEnd, isLoading, error, data)*/}
-
          <View className="flex-1 bg-white">
             {isLoading || !isTransitionEnd ? (
+               // Loading...
                <Loading label="Loading Tour" />
             ) : (
-               // TODO: Add animateCamera to map
+               // Map view
                <Animated.View
                   className="flex-1"
-                  layout={LinearTransition.stiffness()}
                   entering={FadeIn}
                   exiting={FadeOut}
                >
-                  <MapView
-                     className="flex-1"
-                     provider={PROVIDER_GOOGLE}
-                     initialRegion={{
-                        latitude: data.param.mapCenter.lat,
-                        longitude: data.param.mapCenter.lng,
-                        latitudeDelta: data.param.delta,
-                        longitudeDelta: data.param.delta,
-                     }}
-                     //cacheEnabled={true}
-                     customMapStyle={mapStyle}
-                     //showsUserLocation
-                     // showsMyLocationButton
-                  >
-                     {data.points.map((point, index) => (
-                        <Marker
-                           onPress={() => handleMarkerPress(point)}
-                           key={index}
-                           coordinate={{
-                              latitude: point.geo.lat,
-                              longitude: point.geo.lng,
-                           }}
-                           tracksViewChanges={false}
-                           pinColor={
-                              point.group === "fpolln"
-                                 ? "black"
-                                 : point.group === "kosmo12"
-                                 ? "turquoise"
-                                 : point.group === "kosmo15"
-                                 ? "tomato"
-                                 : point.group === "statue"
-                                 ? "indigo"
-                                 : "yellow"
-                           }
-                        ></Marker>
-                     ))}
-                  </MapView>
+                  <Map
+                     data={data}
+                     onMarkerPress={handleMarkerPress}
+                  />
                </Animated.View>
             )}
          </View>
 
-         <BottomSheet
-            snapPoints={snapPoints}
-            ref={bottomSheetRef}
-            index={-1}
-            enablePanDownToClose={true}
-            backdropComponent={renderBackdrop}
-            backgroundStyle={{ backgroundColor: "#333" }}
-            handleComponent={null}
-         >
-            <BottomSheetView className="relative bg-white rounded-xl rounded-b-none">
-               {/* Image */}
-               <Image
-                  source={{
-                     uri: `https://map.farmprod.be/street-art-map-olln/public/img/art/${place.image}`,
-                  }}
-                  className="w-full h-full rounded-xl rounded-b-none"
-                  placeholder={placeholder}
-                  placeholderContentFit="cover"
-                  transition={500}
-               />
-
-               {/* Text */}
-               <View className="bg-black/60 absolute m-0 p-5 pb-12 w-full rounded-xl rounded-b-none bottom-0">
-                  {place.logo && (
-                     <Image
-                        source={place.logo}
-                        className="w-28 h-28 mx-auto mb-4"
-                     />
-                  )}
-                  <Text className="text-white text-center text-xl">{place.name}</Text>
-
-                  <Text className="text-white text-center mt-2 text-md">{place.place}</Text>
-
-                  {place.comment && <Text className="text-white text-center mt-2 text-xs">{place.comment}</Text>}
-               </View>
-
-               {/* Indicator line */}
-               <View className="flex absolute top-2 items-center w-full">
-                  <View className="bg-white/50 w-12 h-1 rounded-sm"></View>
-               </View>
-
-               {/* Open Maps app */}
-               <Pressable
-                  onPress={() => openURL(place)}
-                  className="absolute bg-black/70 active:bg-black top-5 right-5 w-16 h-16 rounded-full flex items-center justify-center"
-               >
-                  <FontAwesome6
-                     name="person-walking-arrow-right"
-                     size={28}
-                     color="white"
-                  />
-               </Pressable>
-            </BottomSheetView>
-         </BottomSheet>
+         <MapModal
+            ref={_bottomSheet}
+            place={place}
+         />
       </>
    )
 }

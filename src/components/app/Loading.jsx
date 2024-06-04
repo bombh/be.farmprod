@@ -1,5 +1,5 @@
 import { View, ActivityIndicator, Image, Text } from "react-native"
-import React, { memo } from "react"
+import React from "react"
 import colors from "tailwindcss/colors"
 import Animated, {
    Easing,
@@ -7,16 +7,14 @@ import Animated, {
    useSharedValue,
    withRepeat,
    withTiming,
-   FadeOut,
    FadeOutUp,
    FadeIn,
-   FadeInDown,
 } from "react-native-reanimated"
 
 const logo = require("@/assets/images/logo_128.png")
 
 const duration = 2000
-const easing = Easing.bezier(0.25, -0, 0.25, 1)
+const easing = Easing.bezier(0.25, 0, 0.25, 1)
 
 const Loading = ({ label, hideLogo }) => {
    const sv = useSharedValue(0)
@@ -56,4 +54,4 @@ const Loading = ({ label, hideLogo }) => {
    )
 }
 
-export default memo(Loading)
+export default Loading
