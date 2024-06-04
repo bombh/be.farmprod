@@ -5,6 +5,8 @@ import useAPI from "@/src/hooks/useAPI"
 import ScreenTitle from "@/src/components/app/ScreenTitle"
 import WorkCard from "@/src/components/WorkCard"
 import HeaderDrawer from "@/src/layouts/HeaderDrawer"
+import Loading from "@/src/components/app/Loading"
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated"
 
 const onEndReached = () => {
    //console.log("Reached end of list")
@@ -18,14 +20,7 @@ export default function Screen() {
          <HeaderDrawer />
          <View className="flex-1 px-5 bg-white">
             {isLoading ? (
-               <>
-                  <ScreenTitle title="Works" />
-                  <ActivityIndicator
-                     className="pt-16"
-                     size="large"
-                     color="#000000"
-                  />
-               </>
+               <Loading label="Loading works" />
             ) : (
                <FlashList
                   data={data.posts}

@@ -18,7 +18,7 @@ const logo = require("@/assets/images/logo_128.png")
 const duration = 2000
 const easing = Easing.bezier(0.25, -0, 0.25, 1)
 
-const Loading = ({ label }) => {
+const Loading = ({ label, hideLogo }) => {
    const sv = useSharedValue(0)
 
    React.useEffect(() => {
@@ -35,13 +35,17 @@ const Loading = ({ label }) => {
          exiting={FadeOutUp}
          className="flex-1 items-center justify-center px-5 pb-32"
       >
-         <Animated.View style={animatedStyle}>
-            <Image
-               source={logo}
-               className=""
-            />
-         </Animated.View>
-         <View className="h-8" />
+         {!hideLogo && (
+            <>
+               <Animated.View style={animatedStyle}>
+                  <Image
+                     source={logo}
+                     className=""
+                  />
+               </Animated.View>
+               <View className="h-8" />
+            </>
+         )}
          <ActivityIndicator
             className=""
             size="large"

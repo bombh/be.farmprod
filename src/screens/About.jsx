@@ -1,4 +1,4 @@
-import { View, ScrollView, ActivityIndicator, useWindowDimensions } from "react-native"
+import { View, ScrollView, useWindowDimensions } from "react-native"
 // import RenderHtml from "react-native-render-html"
 import { Image } from "expo-image"
 
@@ -6,6 +6,7 @@ import useAPI from "@/src/hooks/useAPI"
 import ScreenTitle from "@/src/components/app/ScreenTitle"
 import HeaderDrawer from "@/src/layouts/HeaderDrawer"
 import RenderHtml from "@/src/components/app/RenderHtml"
+import Loading from "@/src/components/app/Loading"
 
 const placeholder = require("@/assets/images/placeholder.png")
 
@@ -16,18 +17,13 @@ export default function Screen() {
       <>
          <HeaderDrawer />
 
-         <ScrollView className="flex-1 bg-white">
-            <ScreenTitle title="About" />
-
+         <View className="flex-1 bg-white">
             {isLoading ? (
-               <ActivityIndicator
-                  className="pt-16"
-                  size="large"
-                  color="#000000"
-               />
+               <Loading />
             ) : (
                data.pages && (
-                  <>
+                  <ScrollView>
+                     <ScreenTitle title="About" />
                      <Image
                         source={{
                            uri: "https://www.farmprod.be/content/images/size/w600/2021/07/bandeFP-1.jpg",
@@ -45,10 +41,10 @@ export default function Screen() {
                            textAlign="justify"
                         />
                      </View>
-                  </>
+                  </ScrollView>
                )
             )}
-         </ScrollView>
+         </View>
       </>
    )
 }
