@@ -7,7 +7,7 @@ import Animated, {
    useSharedValue,
    withRepeat,
    withTiming,
-   FadeOutUp,
+   FadeOut,
    FadeIn,
 } from "react-native-reanimated"
 
@@ -30,7 +30,7 @@ const Loading = ({ label, hideLogo }) => {
    return (
       <Animated.View
          entering={FadeIn}
-         exiting={FadeOutUp}
+         exiting={FadeOut}
          className="flex-1 items-center justify-center px-5 pb-32"
       >
          {!hideLogo && (
