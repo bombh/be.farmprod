@@ -107,12 +107,12 @@ export default function AppDrawer() {
          <Drawer.Screen
             name="20years"
             options={{
-               drawerLabel: "The Book",
+               drawerLabel: "20 years",
                title: "",
                drawerIcon: ({ color }) => (
                   <Icons
-                     // name="cake-candles"
-                     name="book-open-reader"
+                     // book-open-reader
+                     name="cake-candles"
                      size={24}
                      color={color}
                      className="absolute right-4"

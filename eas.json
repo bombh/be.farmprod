@@ -1,37 +1,41 @@
 {
-   "cli": {
-      "version": ">= 7.5.0"
-   },
-   "build": {
-      "dev": {
-         "developmentClient": true,
-         "distribution": "internal",
-         "env": {
-            "EXPO_PUBLIC_API_URL": "https://www.farmprod.be/ghost/api/content/",
-            "EXPO_PUBLIC_API_KEY": "fd7713115a89c0789d3753d616"
-         }
+  "cli": {
+    "version": ">= 7.5.0"
+  },
+  "build": {
+    "dev": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://www.farmprod.be/ghost/api/content/",
+        "EXPO_PUBLIC_API_KEY": "fd7713115a89c0789d3753d616"
       },
-      "dev-ios": {
-         "extends": "dev",
-         "ios": {
-            "simulator": true
-         }
+      "channel": "dev"
+    },
+    "dev-ios": {
+      "extends": "dev",
+      "ios": {
+        "simulator": true
       },
-      "preview": {
-         "distribution": "internal",
-         "env": {
-            "EXPO_PUBLIC_API_URL": "https://www.farmprod.be/ghost/api/content/",
-            "EXPO_PUBLIC_API_KEY": "fd7713115a89c0789d3753d616"
-         }
+      "channel": "dev-ios"
+    },
+    "preview": {
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://www.farmprod.be/ghost/api/content/",
+        "EXPO_PUBLIC_API_KEY": "fd7713115a89c0789d3753d616"
       },
-      "production": {
-         "env": {
-            "EXPO_PUBLIC_API_URL": "https://www.farmprod.be/ghost/api/content/",
-            "EXPO_PUBLIC_API_KEY": "fd7713115a89c0789d3753d616"
-         }
-      }
-   },
-   "submit": {
-      "production": {}
-   }
+      "channel": "preview"
+    },
+    "production": {
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://www.farmprod.be/ghost/api/content/",
+        "EXPO_PUBLIC_API_KEY": "fd7713115a89c0789d3753d616"
+      },
+      "channel": "production"
+    }
+  },
+  "submit": {
+    "production": {}
+  }
 }

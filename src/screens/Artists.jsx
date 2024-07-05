@@ -1,13 +1,11 @@
-import React, { useCallback } from "react"
-import { View, ActivityIndicator } from "react-native"
-import { useNavigation, useRouter } from "expo-router"
+import { View } from "react-native"
 import { FlashList } from "@shopify/flash-list"
-//import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
+import { useRouter } from "expo-router"
 import useAPI from "@/src/hooks/useAPI"
 import ScreenTitle from "@/src/components/app/ScreenTitle"
 import ArtistCard from "@/src/components/ArtistCard"
 import HeaderDrawer from "@/src/layouts/HeaderDrawer"
+import Loading from "@/src/components/app/Loading"
 
 export default function Screen() {
    const router = useRouter()
@@ -20,14 +18,7 @@ export default function Screen() {
 
          <View className="flex-1 px-3 bg-white">
             {isLoading ? (
-               <>
-                  <ScreenTitle title="Artists" />
-                  <ActivityIndicator
-                     className="pt-16"
-                     size="large"
-                     color="#000000"
-                  />
-               </>
+               <Loading label="Loading Artists" />
             ) : (
                <FlashList
                   data={data.authors}

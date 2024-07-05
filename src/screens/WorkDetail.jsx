@@ -1,16 +1,11 @@
-import {
-   ScrollView,
-   View,
-   Text,
-   ActivityIndicator,
-   useWindowDimensions,
-} from "react-native"
+import { ScrollView, View, Text, useWindowDimensions } from "react-native"
 import { Image } from "expo-image"
 import { useLocalSearchParams } from "expo-router"
 
 import useAPI from "@/src/hooks/useAPI"
 import HeaderBack from "@/src/layouts/HeaderBack"
 import RenderHtml from "@/src/components/app/RenderHtml"
+import Loading from "@/src/components/app/Loading"
 
 const placeholder = require("@/assets/images/placeholder.png")
 
@@ -20,11 +15,7 @@ const Screen = () => {
    const { id, title, excerpt, imgHeader, tagText } = params
 
    // Get content
-   const { data, isLoading, error } = useAPI(
-      "GET",
-      `posts/${id}`,
-      "include=authors"
-   )
+   const { data, isLoading, error } = useAPI("GET", `posts/${id}`, "include=authors")
    const { width } = useWindowDimensions()
 
    return (
@@ -47,22 +38,17 @@ const Screen = () => {
                >
                   {title}
                </Text>
-               <Text className="text-xs font-semibold text-center mt-2 text-white">
-                  {tagText}
-               </Text>
+               <Text className="text-xs font-semibold text-center mt-2 text-white">{tagText}</Text>
             </View>
             <View className="px-5 pt-1"></View>
             <View className="px-3 py-5">
-               <Text className="text-lg text-center text-neutral-500 leading-6">
-                  {excerpt}
-               </Text>
+               <Text className="text-lg text-center text-neutral-500 leading-6">{excerpt}</Text>
             </View>
 
             {isLoading ? (
-               <ActivityIndicator
-                  className="pt-16"
-                  size="large"
-                  color="#000000"
+               <Loading
+                  label={"Loading " + title}
+                  hideLogo={true}
                />
             ) : (
                <>
