@@ -49,7 +49,6 @@ export default function Screen() {
    return (
       <>
          <HeaderBack />
-
          <View className="flex-1 bg-white">
             {isLoading || !isTransitionEnd ? (
                // Loading...
@@ -68,7 +67,7 @@ export default function Screen() {
                </Animated.View>
             )}
          </View>
-
+         {/* Map modal */}
          <MapModal
             ref={_bottomSheet}
             place={place}

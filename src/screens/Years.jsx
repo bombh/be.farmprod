@@ -81,12 +81,7 @@ export default function Screen() {
                aesthetic and its sense of friendship...
             </Text>
 
-            <Text className="text-base text-justify mx-5 px-5 py-2 mb-5">
-               THANK YOU to Maison cfc Editions for the support and the great collaboration throughout the long process
-               ; to Collin Hotermans for the graphic design and Éric Van Essche for the texts.
-            </Text>
-
-            <View className="mx-5 mb-5">
+            <View className="mb-5">
                <Image
                   className="w-full aspect-video"
                   source={{
@@ -98,7 +93,7 @@ export default function Screen() {
                />
             </View>
 
-            <View className="mx-5 mb-5">
+            <View className="mb-5">
                <Image
                   className="w-full aspect-video"
                   source={{
@@ -110,7 +105,7 @@ export default function Screen() {
                />
             </View>
 
-            <View className="mx-5 mb-5">
+            <View className="mb-5">
                <Image
                   className="w-full aspect-video"
                   source={{
@@ -121,6 +116,11 @@ export default function Screen() {
                   transition={500}
                />
             </View>
+
+            <Text className="text-base text-justify mx-5 px-5 py-2 mb-5">
+               THANK YOU to Maison cfc Editions for the support and the great collaboration throughout the long process
+               ; to Collin Hotermans for the graphic design and Éric Van Essche for the texts.
+            </Text>
 
             <View className="bg-black m-5 px-5 py-3">
                <Text className="text-lg text-white text-center">The Expo</Text>
@@ -155,7 +155,7 @@ export default function Screen() {
             </Text>
 
             {/* Images */}
-            <View className="mx-5 mb-5">
+            <View className="mb-5">
                <Image
                   className="w-full aspect-video"
                   source={images.expo01}
@@ -164,7 +164,7 @@ export default function Screen() {
                   transition={500}
                />
             </View>
-            <View className="mx-5 mb-5">
+            <View className="mb-5">
                <Image
                   className="w-full aspect-video"
                   source={images.expo02}
@@ -173,7 +173,7 @@ export default function Screen() {
                   transition={500}
                />
             </View>
-            <View className="mx-5 mb-5">
+            <View className="mb-5">
                <Image
                   className="w-full aspect-video"
                   source={images.expo04}
@@ -182,7 +182,7 @@ export default function Screen() {
                   transition={500}
                />
             </View>
-            <View className="mx-5 mb-10">
+            <View className="mb-0">
                <Image
                   className="w-full aspect-video"
                   source={images.expo03}

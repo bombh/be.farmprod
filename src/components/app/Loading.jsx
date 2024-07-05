@@ -13,19 +13,19 @@ import Animated, {
 
 const logo = require("@/assets/images/logo_128.png")
 
-const duration = 2000
-const easing = Easing.bezier(0.25, 0, 0.25, 1)
+// const duration = 2000
+// const easing = Easing.bezier(0.25, 0, 0.25, 1)
 
 const Loading = ({ label, hideLogo }) => {
-   const sv = useSharedValue(0)
+   // const sv = useSharedValue(0)
 
-   React.useEffect(() => {
-      sv.value = withRepeat(withTiming(1, { duration, easing }), -1)
-   }, [])
+   // React.useEffect(() => {
+   //    sv.value = withRepeat(withTiming(1, { duration, easing }), -1)
+   // }, [])
 
-   const animatedStyle = useAnimatedStyle(() => ({
-      transform: [{ rotate: `${sv.value * 360}deg` }],
-   }))
+   // const animatedStyle = useAnimatedStyle(() => ({
+   //    transform: [{ rotate: `${sv.value * 360}deg` }],
+   // }))
 
    return (
       <Animated.View
@@ -35,12 +35,12 @@ const Loading = ({ label, hideLogo }) => {
       >
          {!hideLogo && (
             <>
-               <Animated.View style={animatedStyle}>
+               <View>
                   <Image
                      source={logo}
                      className=""
                   />
-               </Animated.View>
+               </View>
                <View className="h-8" />
             </>
          )}
