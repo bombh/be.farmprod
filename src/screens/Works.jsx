@@ -8,9 +8,9 @@ import HeaderDrawer from "@/src/layouts/HeaderDrawer"
 import Loading from "@/src/components/app/Loading"
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated"
 
-const onEndReached = () => {
-   //console.log("Reached end of list")
-}
+// const onEndReached = () => {
+//    console.log("Reached end of list")
+// }
 
 export default function Screen() {
    const { data, isLoading, error } = useAPI("GET", "posts", "limit=100&include=tags")
@@ -24,12 +24,17 @@ export default function Screen() {
             ) : (
                <FlashList
                   data={data.posts}
-                  renderItem={({ item }) => <WorkCard {...item} />}
+                  renderItem={({ item, index }) => (
+                     <WorkCard
+                        {...item}
+                        index={index}
+                     />
+                  )}
                   keyExtractor={(item) => item.id}
                   estimatedItemSize={268}
-                  onEndReached={onEndReached}
                   onEndReachedThreshold={0.5}
                   ListHeaderComponent={<ScreenTitle title="Works" />}
+                  //onEndReached={onEndReached}
                   // initialNumToRender={5}
                   // maxToRenderPerBatch={5}
                   // scrollEventThrottle={16}

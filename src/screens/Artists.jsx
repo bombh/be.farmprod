@@ -22,7 +22,12 @@ export default function Screen() {
             ) : (
                <FlashList
                   data={data.authors}
-                  renderItem={({ item }) => <ArtistCard {...item} />}
+                  renderItem={({ item, index }) => (
+                     <ArtistCard
+                        {...item}
+                        index={index}
+                     />
+                  )}
                   keyExtractor={(item) => item.id}
                   estimatedItemSize={225}
                   //initialNumToRender={5}

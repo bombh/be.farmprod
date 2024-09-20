@@ -1,13 +1,30 @@
-import { View, Text } from "react-native"
+import { View, Text, Dimensions } from "react-native"
 import { Image } from "expo-image"
+import { MotiView } from "moti"
+import { Easing } from "react-native-reanimated"
 
 const placeholder = require("@/assets/images/placeholder.png")
 
-const ArtistCard = (props) => {
-   const { name, profile_image } = props
+const ArtistCard = ({ name, profile_image, index }) => {
+   const anim = {
+      from: {
+         opacity: 0,
+         translateX: -Dimensions.get("window").width,
+      },
+      animate: {
+         opacity: 1,
+         translateX: 0,
+      },
+      transition: {
+         type: "timing",
+         duration: 600,
+         delay: index * 300,
+         easing: Easing.elastic(4),
+      },
+   }
 
    return (
-      <View className="mb-5">
+      <MotiView {...anim}>
          <View className="flex-row items-center justify-center">
             <View className="w-44 h-44 rounded-full bg-neutral-200">
                <Image
@@ -19,7 +36,7 @@ const ArtistCard = (props) => {
                />
             </View>
          </View>
-         <View className="p-2">
+         <View className="p-2 mb-5">
             <Text
                numberOfLines={1}
                className="text-black font-semibold text-lg text-center"
@@ -27,7 +44,7 @@ const ArtistCard = (props) => {
                {name}
             </Text>
          </View>
-      </View>
+      </MotiView>
    )
 }
 

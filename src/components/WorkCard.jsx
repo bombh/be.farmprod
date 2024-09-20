@@ -1,6 +1,8 @@
 import { Image } from "expo-image"
 import { useRouter } from "expo-router"
-import { Pressable, Text, View } from "react-native"
+import { MotiView } from "moti"
+import { Dimensions, Pressable, Text, View } from "react-native"
+import { Easing } from "react-native-reanimated"
 
 const placeholder = require("@/assets/images/placeholder.png")
 
@@ -8,7 +10,7 @@ const suppressParenthesis = (string) => {
    return string.replace("(", "").replace(")", "")
 }
 
-const WorkCard = ({ id, title, excerpt, feature_image, tags }) => {
+const WorkCard = ({ id, title, excerpt, feature_image, tags, index }) => {
    const router = useRouter()
 
    const img = feature_image.replace("/images/", "/images/size/w300/")
@@ -33,39 +35,64 @@ const WorkCard = ({ id, title, excerpt, feature_image, tags }) => {
       })
    }
 
+   const anim = {
+      from: {
+         opacity: 0,
+         translateX: -Dimensions.get("window").width,
+      },
+      animate: {
+         opacity: 1,
+         translateX: 0,
+      },
+      transition: {
+         type: "timing",
+         duration: 600,
+         delay: index * 300,
+         easing: Easing.elastic(4),
+      },
+   }
+
    return (
-      <Pressable className="mb-5 active:opacity-70" onPress={showDetail}>
-         <View className="relative">
-            <Image
-               source={{ uri: img }}
-               className="w-full h-48"
-               placeholder={placeholder}
-               placeholderContentFit="cover"
-               transition={500}
-            />
-            <View className="absolute bg-black/70 bottom-0 w-full p-2">
+      <MotiView {...anim}>
+         <Pressable
+            className="mb-5 active:opacity-70"
+            onPress={showDetail}
+         >
+            <View className="relative">
+               <Image
+                  source={{ uri: img }}
+                  className="w-full h-40"
+                  placeholder={placeholder}
+                  placeholderContentFit="cover"
+                  transition={500}
+               />
+               <View className="absolute bg-black/70 bottom-0 w-full p-2">
+                  <Text
+                     numberOfLines={1}
+                     className="text-white font-semibold text-lg text-center"
+                  >
+                     {title.trim()}
+                  </Text>
+               </View>
+            </View>
+            <View className="p-2">
                <Text
                   numberOfLines={1}
-                  className="text-white font-semibold text-lg text-center"
+                  className="text-neutral-400 text-base text-center"
                >
-                  {title.trim()}
+                  {excerpt.trim()}
                </Text>
             </View>
-         </View>
-         <View className="p-2">
-            <Text
-               numberOfLines={1}
-               className="text-neutral-400 text-base text-center"
-            >
-               {excerpt.trim()}
-            </Text>
-         </View>
-         <View className="border border-neutral-300 border-x-0 border-y-1">
-            <Text numberOfLines={1} className="text-xs text-center p-1">
-               {tagText}
-            </Text>
-         </View>
-      </Pressable>
+            <View className="border border-neutral-300 border-x-0 border-y-1">
+               <Text
+                  numberOfLines={1}
+                  className="text-xs text-center p-1"
+               >
+                  {tagText}
+               </Text>
+            </View>
+         </Pressable>
+      </MotiView>
    )
 }
 

@@ -31,18 +31,23 @@ export default function Screen() {
             <ScreenTitle title="Tours" />
 
             <TourCard
+               index={0}
                id="lln"
                title="Louvain-la-Neuve"
                img="https://map.farmprod.be/street-art-map-olln/public/img/art/lln_fp_4.jpg"
             />
 
             <TourCard
+               index={1}
                id="ottignies"
                title="Ottignies"
                img="https://map.farmprod.be/street-art-map-olln/public/img/art/ott_fp_5.jpg"
             />
 
-            <TourCard title="Brussels (Soon)" />
+            <TourCard
+               title="Brussels (Soon)"
+               index={2}
+            />
          </ScrollView>
       </>
    )
