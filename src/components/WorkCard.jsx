@@ -35,22 +35,25 @@ const WorkCard = ({ id, title, excerpt, feature_image, tags, index }) => {
       })
    }
 
-   const anim = {
-      from: {
-         opacity: 0,
-         translateX: -Dimensions.get("window").width,
-      },
-      animate: {
-         opacity: 1,
-         translateX: 0,
-      },
-      transition: {
-         type: "timing",
-         duration: 600,
-         delay: index * 300,
-         easing: Easing.elastic(4),
-      },
-   }
+   const anim =
+      index < 4
+         ? {
+              from: {
+                 opacity: 0,
+                 translateX: -Dimensions.get("window").width,
+              },
+              animate: {
+                 opacity: 1,
+                 translateX: 0,
+              },
+              transition: {
+                 type: "timing",
+                 duration: 600,
+                 delay: index * 300,
+                 easing: Easing.elastic(4),
+              },
+           }
+         : {}
 
    return (
       <MotiView {...anim}>

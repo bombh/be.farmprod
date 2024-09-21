@@ -6,22 +6,25 @@ import { Easing } from "react-native-reanimated"
 const placeholder = require("@/assets/images/placeholder.png")
 
 const ArtistCard = ({ name, profile_image, index }) => {
-   const anim = {
-      from: {
-         opacity: 0,
-         translateX: -Dimensions.get("window").width,
-      },
-      animate: {
-         opacity: 1,
-         translateX: 0,
-      },
-      transition: {
-         type: "timing",
-         duration: 600,
-         delay: index * 300,
-         easing: Easing.elastic(4),
-      },
-   }
+   const anim =
+      index < 4
+         ? {
+              from: {
+                 opacity: 0,
+                 translateX: -Dimensions.get("window").width,
+              },
+              animate: {
+                 opacity: 1,
+                 translateX: 0,
+              },
+              transition: {
+                 type: "timing",
+                 duration: 600,
+                 delay: index * 300,
+                 easing: Easing.elastic(4),
+              },
+           }
+         : {}
 
    return (
       <MotiView {...anim}>
