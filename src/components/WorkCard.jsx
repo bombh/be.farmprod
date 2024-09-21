@@ -1,8 +1,8 @@
 import { Image } from "expo-image"
 import { useRouter } from "expo-router"
 import { MotiView } from "moti"
-import { Dimensions, Pressable, Text, View } from "react-native"
-import { Easing } from "react-native-reanimated"
+import { Pressable, Text, View } from "react-native"
+import { animations } from "@/src/constants"
 
 const placeholder = require("@/assets/images/placeholder.png")
 
@@ -35,25 +35,7 @@ const WorkCard = ({ id, title, excerpt, feature_image, tags, index }) => {
       })
    }
 
-   const anim =
-      index < 4
-         ? {
-              from: {
-                 opacity: 0,
-                 translateX: -Dimensions.get("window").width,
-              },
-              animate: {
-                 opacity: 1,
-                 translateX: 0,
-              },
-              transition: {
-                 type: "timing",
-                 duration: 600,
-                 delay: index * 300,
-                 easing: Easing.elastic(1),
-              },
-           }
-         : {}
+   const anim = index < 4 ? animations.listItem(index) : {}
 
    return (
       <MotiView {...anim}>

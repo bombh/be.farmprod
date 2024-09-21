@@ -1,30 +1,12 @@
-import { View, Text, Dimensions } from "react-native"
+import { View, Text } from "react-native"
 import { Image } from "expo-image"
 import { MotiView } from "moti"
-import { Easing } from "react-native-reanimated"
+import { animations } from "@/src/constants"
 
 const placeholder = require("@/assets/images/placeholder.png")
 
 const ArtistCard = ({ name, profile_image, index }) => {
-   const anim =
-      index < 4
-         ? {
-              from: {
-                 opacity: 0,
-                 translateX: -Dimensions.get("window").width,
-              },
-              animate: {
-                 opacity: 1,
-                 translateX: 0,
-              },
-              transition: {
-                 type: "timing",
-                 duration: 600,
-                 delay: index * 300,
-                 easing: Easing.elastic(1),
-              },
-           }
-         : {}
+   const anim = index < 4 ? animations.listItem(index) : {}
 
    return (
       <MotiView {...anim}>

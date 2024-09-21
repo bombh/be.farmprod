@@ -2,41 +2,11 @@ import { View, ActivityIndicator, Image, Text } from "react-native"
 import colors from "tailwindcss/colors"
 import { MotiView } from "moti"
 import { Easing } from "react-native-reanimated"
+import { animations } from "@/src/constants"
 
 const logo = require("@/assets/images/logo_128.png")
 
-const anim = {
-   from: {
-      opacity: 0.4,
-      rotate: "0deg",
-      translateY: -40,
-      scale: 0.5,
-   },
-   animate: {
-      opacity: 1,
-      rotate: "360deg",
-      translateY: 0,
-      scale: 1,
-   },
-   transition: {
-      type: "timing",
-      duration: 2500,
-      loop: true,
-      repeatReverse: true,
-      easing: Easing.elastic(3),
-   },
-   exit: {
-      opacity: 0,
-      rotate: "0deg",
-      translateY: -50,
-      scale: 0.5,
-   },
-   exitTransition: {
-      type: "timing",
-      duration: 200,
-      easing: Easing.elastic(2),
-   },
-}
+const anim = animations.loadingLogo()
 
 const Loading = ({ label, hideLogo }) => {
    return (
