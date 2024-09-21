@@ -1,46 +1,54 @@
 import { View, ActivityIndicator, Image, Text } from "react-native"
-import React from "react"
 import colors from "tailwindcss/colors"
-import Animated, {
-   Easing,
-   useAnimatedStyle,
-   useSharedValue,
-   withRepeat,
-   withTiming,
-   FadeOut,
-   FadeIn,
-} from "react-native-reanimated"
+import { MotiView } from "moti"
+import { Easing } from "react-native-reanimated"
 
 const logo = require("@/assets/images/logo_128.png")
 
-// const duration = 2000
-// const easing = Easing.bezier(0.25, 0, 0.25, 1)
+const anim = {
+   from: {
+      opacity: 0.5,
+      rotate: "0deg",
+      translateY: -40,
+      scale: 0.5,
+   },
+   animate: {
+      opacity: 1,
+      rotate: "360deg",
+      translateY: 0,
+      scale: 1,
+   },
+   transition: {
+      type: "timing",
+      duration: 2500,
+      loop: true,
+      repeatReverse: true,
+      easing: Easing.elastic(3),
+   },
+   exit: {
+      opacity: 0,
+      rotate: "0deg",
+      translateY: -50,
+      scale: 0.5,
+   },
+   exitTransition: {
+      type: "timing",
+      duration: 200,
+      easing: Easing.elastic(2),
+   },
+}
 
 const Loading = ({ label, hideLogo }) => {
-   // const sv = useSharedValue(0)
-
-   // React.useEffect(() => {
-   //    sv.value = withRepeat(withTiming(1, { duration, easing }), -1)
-   // }, [])
-
-   // const animatedStyle = useAnimatedStyle(() => ({
-   //    transform: [{ rotate: `${sv.value * 360}deg` }],
-   // }))
-
    return (
-      <Animated.View
-         entering={FadeIn}
-         exiting={FadeOut}
-         className="flex-1 items-center justify-center px-5 pb-32"
-      >
+      <View className="flex-1 items-center justify-center px-5 pb-32">
          {!hideLogo && (
             <>
-               <View>
+               <MotiView {...anim}>
                   <Image
                      source={logo}
                      className=""
                   />
-               </View>
+               </MotiView>
                <View className="h-8" />
             </>
          )}
@@ -50,7 +58,7 @@ const Loading = ({ label, hideLogo }) => {
             color={colors.neutral[500]}
          />
          <Text className="mt-2 text-neutral-500">{label ? label : "Loading"}</Text>
-      </Animated.View>
+      </View>
    )
 }
 

@@ -50,7 +50,7 @@ const WorkCard = ({ id, title, excerpt, feature_image, tags, index }) => {
                  type: "timing",
                  duration: 600,
                  delay: index * 300,
-                 easing: Easing.elastic(4),
+                 easing: Easing.elastic(1),
               },
            }
          : {}

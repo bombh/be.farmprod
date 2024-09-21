@@ -14,12 +14,12 @@ import Animated, { FadeIn, FadeOut } from "react-native-reanimated"
 
 export default function Screen() {
    const { data, isLoading, error } = useAPI("GET", "posts", "limit=100&include=tags")
-
+   const visible = false
    return (
       <>
          <HeaderDrawer />
          <View className="flex-1 px-5 bg-white">
-            {isLoading ? (
+            {isLoading || visible ? (
                <Loading label="Loading Works" />
             ) : (
                <FlashList
