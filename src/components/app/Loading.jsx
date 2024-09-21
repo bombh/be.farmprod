@@ -7,7 +7,7 @@ const logo = require("@/assets/images/logo_128.png")
 
 const anim = {
    from: {
-      opacity: 0.5,
+      opacity: 0.4,
       rotate: "0deg",
       translateY: -40,
       scale: 0.5,
@@ -49,7 +49,7 @@ const Loading = ({ label, hideLogo }) => {
                      className=""
                   />
                </MotiView>
-               <View className="h-8" />
+               <View className="h-12" />
             </>
          )}
          <ActivityIndicator
